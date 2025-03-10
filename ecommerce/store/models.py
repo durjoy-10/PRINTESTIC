@@ -1,5 +1,5 @@
 from django.db import models
-from phonenumber_field.modelfields import PhoneNumberField 
+from phonenumber_field.modelfields import PhoneNumberField
 
 # Product Model
 class Product(models.Model):
@@ -25,18 +25,28 @@ class Product(models.Model):
 
 # Order Model
 class Order(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
     customer_name = models.CharField(max_length=255)
     customer_email = models.EmailField()
-    customer_phone = PhoneNumberField(default='+1234567890')  # Add a default phone number
+    customer_phone = PhoneNumberField(default='+1234567890')
     address = models.TextField()
-    quantity = models.PositiveIntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Order {self.id} - {self.product.name}"
+        return f"Order {self.id} - {self.customer_name}"
 
-# Review Model
+# OrderItem Model (to track multiple products in an order)
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f"{self.quantity} x {self.product.name} (Order {self.order.id})"
+
+    def total_price(self):
+        return self.quantity * self.product.price
+
+# Review and Offer Models (unchanged)
 class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
@@ -47,7 +57,6 @@ class Review(models.Model):
     def __str__(self):
         return f"Review for {self.product.name}"
 
-# Offer Model
 class Offer(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     discount_price = models.DecimalField(max_digits=10, decimal_places=2)

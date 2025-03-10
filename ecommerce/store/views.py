@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Product, Order, Review, Offer
+from .models import Product, Order, Review,OrderItem,Offer
 from django.http import HttpResponse
 
 # Home Page
@@ -26,10 +26,12 @@ def product_detail(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     return render(request, 'store/product_detail.html', {'product': product})
 
-# Place Order
+
+#Place_order
 def place_order(request, product_id):
     product = get_object_or_404(Product, id=product_id)
-    
+    all_products = Product.objects.all()
+
     if request.method == 'POST':
         # Retrieve form data
         name = request.POST['name']
@@ -42,24 +44,56 @@ def place_order(request, product_id):
         if quantity > product.stock:
             return HttpResponse("Error: Not enough stock available.")
 
-        # Create and save the order
-        Order.objects.create(
-            product=product,
+        # Create the Order
+        order = Order.objects.create(
             customer_name=name,
             customer_email=email,
             customer_phone=phone,
-            address=address,
+            address=address
+        )
+
+        # Create the OrderItem for the initial product
+        OrderItem.objects.create(
+            order=order,
+            product=product,
             quantity=quantity
         )
 
-        # Reduce stock
+        # Reduce stock for the initial product
         product.stock -= quantity
         product.save()
+
+        # Handle additional products (if any)
+        additional_products = request.POST.getlist('additional_products')
+        additional_quantities = request.POST.getlist('additional_quantities')
+
+        for prod_id, qty in zip(additional_products, additional_quantities):
+            additional_product = Product.objects.get(id=prod_id)
+            additional_quantity = int(qty)
+
+            # Check if requested quantity is available
+            if additional_quantity > additional_product.stock:
+                return HttpResponse(f"Error: Not enough stock available for {additional_product.name}.")
+
+            # Create the OrderItem for the additional product
+            OrderItem.objects.create(
+                order=order,
+                product=additional_product,
+                quantity=additional_quantity
+            )
+
+            # Reduce stock for the additional product
+            additional_product.stock -= additional_quantity
+            additional_product.save()
 
         # Redirect to order success page
         return redirect('order_success')
 
-    return render(request, 'store/place_order.html', {'product': product})
+    context = {
+        'product': product,
+        'all_products': all_products,
+    }
+    return render(request, 'store/place_order.html', context)
 
 # Order Success Page
 def order_success(request):
