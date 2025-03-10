@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.name }}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1e1e1e, #484848);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: #222;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(255, 136, 0, 0.3);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+        h1, h2 {
+            color: #ff8c00;
+        }
+        img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(255, 136, 0, 0.4);
+        }
+        p {
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            margin-top: 10px;
+            background: linear-gradient(45deg, #ff8c00, #ff2d55);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0px 3px 10px rgba(255, 136, 0, 0.5);
+        }
+        .btn:hover {
+            background: linear-gradient(45deg, #ff2d55, #ff8c00);
+            transform: scale(1.1);
+        }
+        .review {
+            background: #333;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px rgba(255, 136, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ product.name }}</h1>
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        <p><strong>Category:</strong> {{ product.category }}</p>
+        <p><strong>Price:</strong> ${{ product.price }}</p>
+        <p><strong>Description:</strong> {{ product.description }}</p>
+        <p><strong>Size:</strong> {{ product.size }}</p>
+        <p><strong>Stock:</strong> {{ product.stock }}</p>
+
+        <a href="{% url 'place_order' product.id %}" class="btn">Order Now</a>
+
+        <h2>Reviews</h2>
+        {% for review in product.review_set.all %}
+            <div class="review">
+                <p><strong>{{ review.name }}</strong> ({{ review.rating }}/5)</p>
+                <p>{{ review.comment }}</p>
+            </div>
+        {% empty %}
+            <p>No reviews yet.</p>
+        {% endfor %}
+
+        <a href="{% url 'add_review' product.id %}" class="btn">Add Review</a>
+    </div>
+</body>
+</html>

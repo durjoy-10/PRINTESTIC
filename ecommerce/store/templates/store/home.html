@@ -1,0 +1,299 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRINTASTIC007</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1c1c1c, #484848);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* Animated Header */
+        h1 {
+            background: linear-gradient(90deg, rgb(72, 99, 158), rgb(126, 47, 61));
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(255, 136, 0, 0.5);
+            font-size: 3em;
+            font-weight: 600;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+            animation: glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 3px 3px 20px rgba(255, 136, 0, 0.8); }
+            to { text-shadow: 3px 3px 30px rgba(255, 45, 85, 1); }
+        }
+
+        /* Category Section */
+        .category {
+            width: 90%;
+            margin: 50px auto;
+            padding: 20px;
+            background: #222;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(255, 136, 0, 0.3);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .category:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 40px rgba(255, 136, 0, 0.5);
+        }
+
+        h2 {
+            color: #ff4081;
+            font-size: 2.2em;
+            border-bottom: 4px solid #ff8c00;
+            display: inline-block;
+            padding-bottom: 8px;
+            text-shadow: 2px 2px 10px rgba(255, 136, 0, 0.6);
+        }
+
+        /* Product List */
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        /* Product Card */
+        .product-item {
+            background: #333;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(255, 136, 0, 0.5);
+            text-align: center;
+            padding: 15px;
+            width: 250px;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .product-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(255, 136, 0, 0.7);
+        }
+
+        /* Product Image */
+        .product-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 5px solid #ff4081;
+            border-radius: 12px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .product-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Product Name */
+        .product-item h3 {
+            color: #fff;
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+
+        /* Product Price */
+        .product-item p {
+            color: #ff5722;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        /* Dynamic Button */
+        .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 12px 20px;
+            background: linear-gradient(45deg, #ff8c00, #ff2d55);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0px 3px 10px rgba(255, 136, 0, 0.5);
+        }
+
+        .btn:hover {
+            background: linear-gradient(45deg, #ff2d55, #ff8c00);
+            transform: scale(1.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .product-list {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .product-item {
+                width: 90%;
+            }
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: #222;
+            padding: 40px 20px;
+            margin-top: 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(255, 136, 0, 0.3);
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            color: #ff4081;
+            font-size: 2.2em;
+            border-bottom: 4px solid #ff8c00;
+            display: inline-block;
+            padding-bottom: 8px;
+            text-shadow: 2px 2px 10px rgba(255, 136, 0, 0.6);
+        }
+
+        .contact-section p {
+            color: #fff;
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        .contact-section a {
+            color: #ff5722;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .contact-section a:hover {
+            color: #ff8c00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>WELCOME TO OUR STORE_PRINTASTIC007</h1>
+
+        <!-- T-shirt Section -->
+        <section class="category">
+            <h2>T-shirts</h2>
+            <div class="product-list">
+                {% for product in t_shirts %}
+                    <div class="product-item">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        <h3>{{ product.name }}</h3>
+                        <p>Price: ${{ product.price }}</p>
+                        <a href="{% url 'product_detail' product.id %}" class="btn">View Details</a>
+                    </div>
+                {% empty %}
+                    <p>T-shirts aren't available right now.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Shirt Section -->
+        <section class="category">
+            <h2>Shirts</h2>
+            <div class="product-list">
+                {% for product in shirts %}
+                    <div class="product-item">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        <h3>{{ product.name }}</h3>
+                        <p>Price: ${{ product.price }}</p>
+                        <a href="{% url 'product_detail' product.id %}" class="btn">View Details</a>
+                    </div>
+                {% empty %}
+                    <p>Shirts aren't available right now.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Hoodie Section -->
+        <section class="category">
+            <h2>Hoodies</h2>
+            <div class="product-list">
+                {% for product in hoodies %}
+                    <div class="product-item">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        <h3>{{ product.name }}</h3>
+                        <p>Price: ${{ product.price }}</p>
+                        <a href="{% url 'product_detail' product.id %}" class="btn">View Details</a>
+                    </div>
+                {% empty %}
+                    <p>Hoodies aren't available right now.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Jersey Section -->
+        <section class="category">
+            <h2>Jerseys</h2>
+            <div class="product-list">
+                {% for product in jerseys %}
+                    <div class="product-item">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        <h3>{{ product.name }}</h3>
+                        <p>Price: ${{ product.price }}</p>
+                        <a href="{% url 'product_detail' product.id %}" class="btn">View Details</a>
+                    </div>
+                {% empty %}
+                    <p>Jerseys aren't available right now.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Panjabi Section -->
+        <section class="category">
+            <h2>Panjabis</h2>
+            <div class="product-list">
+                {% for product in panjabis %}
+                    <div class="product-item">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        <h3>{{ product.name }}</h3>
+                        <p>Price: ${{ product.price }}</p>
+                        <a href="{% url 'product_detail' product.id %}" class="btn">View Details</a>
+                    </div>
+                {% empty %}
+                    <p>Panjabis aren't available right now.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Pants Section -->
+        <section class="category">
+            <h2>Pants</h2>
+            <div class="product-list">
+                {% for product in pants %}
+                    <div class="product-item">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        <h3>{{ product.name }}</h3>
+                        <p>Price: ${{ product.price }}</p>
+                        <a href="{% url 'product_detail' product.id %}" class="btn">View Details</a>
+                    </div>
+                {% empty %}
+                    <p>Pants aren't available right now.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <h2>Contact Us</h2>
+            <p>Follow us on Facebook: <a href="https://www.facebook.com/share/16GPbNVCs4/" target="_blank">PRINTASTIC007</a></p>
+            <p>Email us at: <a href="mailto:printastic007@gmail.com">printastic007@gmail.com</a></p>
+            <p>WhatsApp: <a href="https://wa.me/01902419513" target="_blank">+8801902419513</a></p>
+        </section>
+    </div>
+</body>
+</html>
