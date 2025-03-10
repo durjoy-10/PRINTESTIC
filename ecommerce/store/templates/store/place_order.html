@@ -65,6 +65,12 @@
             resize: none;
             height: 80px;
         }
+        .price-info {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #ffcc00;
+        }
         button {
             display: inline-block;
             padding: 12px 20px;
@@ -83,13 +89,17 @@
             background: linear-gradient(45deg, #ff2d55, #ff8c00);
             transform: scale(1.1);
         }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Order {{ product.name }}</h1>
         <img src="{{ product.image.url }}" alt="{{ product.name }}">
-        <p><strong>Price:</strong> ${{ product.price }}</p>
+        <p><strong>Price per unit:</strong> ${{ product.price }}</p>
         <p><strong>Size:</strong> {{ product.size }}</p>
 
         <form method="POST">
@@ -107,17 +117,35 @@
                 <input type="tel" name="phone" required>
             </div>
 
-
             <div class="form-group">
                 <label>Address:</label>
                 <textarea name="address" required></textarea>
             </div>
+
             <div class="form-group">
                 <label>Quantity:</label>
-                <input type="number" name="quantity" min="1" max="{{ product.stock }}" required>
+                <input type="number" name="quantity" id="quantity" min="1" max="{{ product.stock }}" value="1" required oninput="updateTotalPrice()">
             </div>
-            <button type="submit">Place Order</button>
+
+            <p class="price-info">Total Price: $<span id="total-price">{{ product.price }}</span></p>
+
+            <div class="buttons">
+                <button type="submit">Place Order</button>
+                <a href="{% url 'home' %}" class="add-another">Add Another Product</a>
+            </div>
         </form>
     </div>
+
+    <script>
+        function updateTotalPrice() {
+            let quantity = document.getElementById("quantity").value;
+            let price = {{ product.price }};
+            let totalPrice = quantity * price;
+            document.getElementById("total-price").innerText = totalPrice.toFixed(2);
+        }
+
+        // Ensure price updates on page load
+        window.onload = updateTotalPrice;
+    </script>
 </body>
 </html>
