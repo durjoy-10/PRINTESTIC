@@ -12,11 +12,13 @@ django-extensions==3.2.3
 django-livereload-server==0.5.1
 django-phonenumber-field==8.0.0
 django-tailwind==3.8.0
+gunicorn==23.0.0
 idna==3.10
 Jinja2==3.1.6
 markdown-it-py==3.0.0
 MarkupSafe==3.0.2
 mdurl==0.1.2
+packaging==24.2
 phonenumbers==9.0.0
 pillow==11.1.0
 Pygments==2.19.1
