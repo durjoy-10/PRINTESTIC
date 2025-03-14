@@ -1,3 +1,5 @@
+<!-- store/templates/store/home.html -->
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -6,8 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRINTASTIC007</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
         /* General Styles */
         body {
             font-family: 'Poppins', sans-serif;
@@ -15,20 +15,26 @@
             color: #fff;
             margin: 0;
             padding: 0;
-            text-align: center;
             overflow-x: hidden;
         }
 
-        /* Animated Header */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+
         h1 {
             background: linear-gradient(90deg, rgb(72, 99, 158), rgb(126, 47, 61));
             padding: 15px;
             border-radius: 10px;
             box-shadow: 0 5px 20px rgba(255, 136, 0, 0.5);
-            font-size: 3em;
+            font-size: 2.5em;
             font-weight: 600;
             text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
             animation: glow 1.5s infinite alternate;
+            text-align: center;
         }
 
         @keyframes glow {
@@ -36,10 +42,100 @@
             to { text-shadow: 3px 3px 30px rgba(255, 45, 85, 1); }
         }
 
+        /* Hamburger Icon */
+        .hamburger-icon {
+            position: fixed;
+            left: 20px;
+            top: 20px;
+            font-size: 2em;
+            cursor: pointer;
+            z-index: 1001;
+            color: #ff8c00;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .hamburger-icon:hover {
+            color: #ff2d55;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: -250px; /* Hide sidebar by default */
+            top: 0;
+            height: 100%;
+            width: 250px;
+            background: #222;
+            box-shadow: 0 5px 20px rgba(255, 136, 0, 0.3);
+            z-index: 1000;
+            transition: left 0.3s ease-in-out;
+        }
+
+        .sidebar.open {
+            left: 0; /* Show sidebar when open */
+        }
+
+        /* Sidebar Content */
+        .sidebar-content {
+            padding-top: 70px; /* Add space below the toggle button */
+        }
+
+        /* Section Buttons */
+        .sidebar button {
+            display: block;
+            width: 100%; /* Full width of the sidebar */
+            margin: 10px 0;
+            padding: 12px 20px;
+            background: linear-gradient(45deg, #ff8c00, #ff2d55);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0px 3px 10px rgba(255, 136, 0, 0.5);
+            text-align: left; /* Align text to the left */
+        }
+
+        .sidebar button:hover {
+            background: linear-gradient(45deg, #ff2d55, #ff8c00);
+            transform: scale(1.02); /* Slight scale effect on hover */
+        }
+
+        /* Add some spacing between buttons */
+        .sidebar button:not(:last-child) {
+            margin-bottom: 15px;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .search-bar input {
+            width: 80%;
+            max-width: 400px;
+            padding: 12px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            background: #333;
+            color: white;
+            box-shadow: 0 2px 5px rgba(255, 136, 0, 0.3);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 136, 0, 0.7);
+            transform: scale(1.02);
+        }
+
         /* Category Section */
         .category {
-            width: 90%;
-            margin: 50px auto;
+            width: 100%;
+            margin: 20px 0;
             padding: 20px;
             background: #222;
             border-radius: 12px;
@@ -54,7 +150,7 @@
 
         h2 {
             color: #ff4081;
-            font-size: 2.2em;
+            font-size: 2em;
             border-bottom: 4px solid #ff8c00;
             display: inline-block;
             padding-bottom: 8px;
@@ -76,7 +172,7 @@
             box-shadow: 0 5px 20px rgba(255, 136, 0, 0.5);
             text-align: center;
             padding: 15px;
-            width: 250px;
+            width: calc(33.333% - 40px); /* 3 items per row */
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
 
@@ -132,61 +228,195 @@
             transform: scale(1.1);
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .product-list {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .product-item {
-                width: 90%;
-            }
-        }
-
         /* Contact Section */
         .contact-section {
             background: #222;
-            padding: 40px 20px;
+            padding: 50px 20px;
             margin-top: 50px;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(255, 136, 0, 0.3);
             text-align: center;
+            animation: fadeIn 1.5s ease-in-out;
         }
 
         .contact-section h2 {
             color: #ff4081;
-            font-size: 2.2em;
+            font-size: 2.5em;
             border-bottom: 4px solid #ff8c00;
             display: inline-block;
             padding-bottom: 8px;
             text-shadow: 2px 2px 10px rgba(255, 136, 0, 0.6);
+            margin-bottom: 30px;
         }
 
-        .contact-section p {
+        .contact-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            flex: 1;
+            text-align: left;
+            background: #333;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(255, 136, 0, 0.3);
+        }
+
+        .contact-info p {
             color: #fff;
             font-size: 1.2em;
-            margin: 10px 0;
+            margin: 15px 0;
         }
 
-        .contact-section a {
+        .contact-info a {
             color: #ff5722;
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s ease-in-out;
         }
 
-        .contact-section a:hover {
+        .contact-info a:hover {
             color: #ff8c00;
+        }
+
+        .contact-form {
+            flex: 1;
+            background: #333;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(255, 136, 0, 0.3);
+        }
+
+        .contact-form h3 {
+            color: #ff8c00;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin: 15px 0;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            background: #444;
+            color: white;
+            box-shadow: 0 2px 5px rgba(255, 136, 0, 0.3);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 136, 0, 0.7);
+            transform: scale(1.02);
+        }
+
+        .form-group textarea {
+            resize: none;
+            height: 120px;
+        }
+
+        button[type="submit"] {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #ff8c00, #ff2d55);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0px 3px 10px rgba(255, 136, 0, 0.5);
+        }
+
+        button[type="submit"]:hover {
+            background: linear-gradient(45deg, #ff2d55, #ff8c00);
+            transform: scale(1.1);
+        }
+
+        /* Scroll-to-Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #ff8c00, #ff2d55);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0px 3px 10px rgba(255, 136, 0, 0.5);
+            transition: all 0.3s ease-in-out;
+            display: none;
+        }
+
+        .scroll-to-top:hover {
+            background: linear-gradient(45deg, #ff2d55, #ff8c00);
+            transform: scale(1.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .product-item {
+                width: calc(50% - 40px); /* 2 items per row on tablets */
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .product-item {
+                width: 100%; /* 1 item per row on phones */
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Hamburger Icon -->
+    <div class="hamburger-icon" onclick="toggleSidebar()">☰</div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+            <button onclick="scrollToSection('t-shirts')">T-shirts</button>
+            <button onclick="scrollToSection('shirts')">Shirts</button>
+            <button onclick="scrollToSection('hoodies')">Hoodies</button>
+            <button onclick="scrollToSection('jerseys')">Jerseys</button>
+            <button onclick="scrollToSection('panjabis')">Panjabis</button>
+            <button onclick="scrollToSection('pants')">Pants</button>
+            <button onclick="scrollToSection('contact')">Contact</button>
+        </div>
+    </div>
+
     <div class="container">
         <h1>WELCOME TO OUR STORE_PRINTASTIC007</h1>
 
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" placeholder="Search products..." oninput="filterProducts(this.value)">
+        </div>
+
         <!-- T-shirt Section -->
-        <section class="category">
+        <section id="t-shirts" class="category">
             <h2>T-shirts</h2>
             <div class="product-list">
                 {% for product in t_shirts %}
@@ -203,7 +433,7 @@
         </section>
 
         <!-- Shirt Section -->
-        <section class="category">
+        <section id="shirts" class="category">
             <h2>Shirts</h2>
             <div class="product-list">
                 {% for product in shirts %}
@@ -219,8 +449,10 @@
             </div>
         </section>
 
+        <!-- Add more sections for other categories -->
+
         <!-- Hoodie Section -->
-        <section class="category">
+        <section id="hoodies" class="category">
             <h2>Hoodies</h2>
             <div class="product-list">
                 {% for product in hoodies %}
@@ -237,7 +469,7 @@
         </section>
 
         <!-- Jersey Section -->
-        <section class="category">
+        <section id="jerseys" class="category">
             <h2>Jerseys</h2>
             <div class="product-list">
                 {% for product in jerseys %}
@@ -254,7 +486,7 @@
         </section>
 
         <!-- Panjabi Section -->
-        <section class="category">
+        <section id="panjabis" class="category">
             <h2>Panjabis</h2>
             <div class="product-list">
                 {% for product in panjabis %}
@@ -271,7 +503,7 @@
         </section>
 
         <!-- Pants Section -->
-        <section class="category">
+        <section id="pants" class="category">
             <h2>Pants</h2>
             <div class="product-list">
                 {% for product in pants %}
@@ -288,12 +520,57 @@
         </section>
 
         <!-- Contact Section -->
-        <section class="contact-section">
+        <section id="contact" class="contact-section">
             <h2>Contact Us</h2>
             <p>Follow us on Facebook: <a href="https://www.facebook.com/share/16GPbNVCs4/" target="_blank">PRINTASTIC007</a></p>
             <p>Email us at: <a href="mailto:printastic007@gmail.com">printastic007@gmail.com</a></p>
             <p>WhatsApp: <a href="https://wa.me/01902419513" target="_blank">+8801902419513</a></p>
         </section>
     </div>
+
+    <!-- Scroll-to-Top Button -->
+    <button class="scroll-to-top" onclick="scrollToTop()">↑</button>
+
+    <script>
+        // Toggle sidebar
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        // Scroll to specific section
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+            toggleSidebar(); // Close sidebar after clicking a button
+        }
+
+        // Scroll to top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show/hide scroll-to-top button
+        window.onscroll = function() {
+            const scrollButton = document.querySelector('.scroll-to-top');
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollButton.style.display = 'block';
+            } else {
+                scrollButton.style.display = 'none';
+            }
+        };
+
+        // Filter products (example functionality)
+        function filterProducts(query) {
+            const products = document.querySelectorAll('.product-item');
+            products.forEach(product => {
+                const productName = product.querySelector('h3').textContent.toLowerCase();
+                if (productName.includes(query.toLowerCase())) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+<!-- product_detail.html -->
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -73,8 +74,13 @@
         <p><strong>Category:</strong> {{ product.category }}</p>
         <p><strong>Price:</strong> ${{ product.price }}</p>
         <p><strong>Description:</strong> {{ product.description }}</p>
-        <p><strong>Size:</strong> {{ product.size }}</p>
-        <p><strong>Stock:</strong> {{ product.stock }}</p>
+
+        <h2>Sizes and Stock</h2>
+        <ul>
+            {% for size in sizes %}
+                <li><strong>Size:</strong> {{ size.size }} - <strong>Stock:</strong> {{ size.stock }}</li>
+            {% endfor %}
+        </ul>
 
         <a href="{% url 'place_order' product.id %}" class="btn">Order Now</a>
 
@@ -92,3 +98,4 @@
     </div>
 </body>
 </html>
+

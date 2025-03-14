@@ -7,125 +7,124 @@
     <title>Order {{ product.name }}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <style>
-
-            body {
-                font-family: 'Poppins', sans-serif;
-                background: linear-gradient(135deg, #1e1e1e, #484848);
-                color: #fff;
-                margin: 0;
-                padding: 0;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                min-height: 100vh;
-            }
-            .container {
-                background: #222;
-                padding: 30px;
-                border-radius: 12px;
-                box-shadow: 0 10px 30px rgba(255, 136, 0, 0.3);
-                text-align: center;
-                max-width: 600px;
-                width: 90%;
-            }
-            h1 {
-                color: #ff8c00;
-                font-size: 2.5em;
-                margin-bottom: 20px;
-            }
-            img {
-                width: 100%;
-                max-width: 200px;
-                border-radius: 10px;
-                margin: 20px 0;
-                box-shadow: 0 5px 15px rgba(255, 136, 0, 0.4);
-            }
-            p {
-                font-size: 1.1em;
-                margin: 10px 0;
-            }
-            .form-group {
-                margin: 15px 0;
-                text-align: left;
-            }
-            label {
-                display: block;
-                font-weight: bold;
-                margin-bottom: 5px;
-                color: #ff8c00;
-            }
-            input, textarea, select {
-                width: 100%;
-                padding: 10px;
-                border: none;
-                border-radius: 5px;
-                font-size: 1em;
-                background: #333;
-                color: white;
-                box-shadow: 0 2px 5px rgba(255, 136, 0, 0.3);
-            }
-            textarea {
-                resize: none;
-                height: 80px;
-            }
-            .price-info {
-                font-size: 1.2em;
-                font-weight: bold;
-                margin: 10px 0;
-                color: #ffcc00;
-            }
-            button {
-                display: inline-block;
-                padding: 12px 20px;
-                margin-top: 10px;
-                background: linear-gradient(45deg, #ff8c00, #ff2d55);
-                color: white;
-                text-decoration: none;
-                border-radius: 25px;
-                font-size: 1.1em;
-                transition: all 0.3s ease-in-out;
-                border: none;
-                cursor: pointer;
-                box-shadow: 0px 3px 10px rgba(255, 136, 0, 0.5);
-            }
-            button:hover {
-                background: linear-gradient(45deg, #ff2d55, #ff8c00);
-                transform: scale(1.1);
-            }
-            .buttons {
-                display: flex;
-                justify-content: space-between;
-                margin-top: 20px;
-            }
-            .add-another {
-                background: #333;
-                color: #ff8c00;
-                border: 1px solid #ff8c00;
-                padding: 10px 20px;
-                border-radius: 25px;
-                cursor: pointer;
-                transition: all 0.3s ease-in-out;
-                font-size: 1em;
-            }
-            .add-another:hover {
-                background: #ff8c00;
-                color: white;
-            }
-            .additional-product {
-                margin-top: 20px;
-                padding: 15px;
-                background: #333;
-                border-radius: 10px;
-                box-shadow: 0 5px 15px rgba(255, 136, 0, 0.3);
-            }
-            .additional-product h3 {
-                color: #ff8c00;
-                font-size: 1.2em;
-                margin-bottom: 10px;
-            }
-            .additional-product .form-group {
-                margin: 10px 0;
-            }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1e1e1e, #484848);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: #222;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(255, 136, 0, 0.3);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+        }
+        h1 {
+            color: #ff8c00;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        img {
+            width: 100%;
+            max-width: 200px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(255, 136, 0, 0.4);
+        }
+        p {
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+        .form-group {
+            margin: 15px 0;
+            text-align: left;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #ff8c00;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            background: #333;
+            color: white;
+            box-shadow: 0 2px 5px rgba(255, 136, 0, 0.3);
+        }
+        textarea {
+            resize: none;
+            height: 80px;
+        }
+        .price-info {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #ffcc00;
+        }
+        button {
+            display: inline-block;
+            padding: 12px 20px;
+            margin-top: 10px;
+            background: linear-gradient(45deg, #ff8c00, #ff2d55);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            transition: all 0.3s ease-in-out;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0px 3px 10px rgba(255, 136, 0, 0.5);
+        }
+        button:hover {
+            background: linear-gradient(45deg, #ff2d55, #ff8c00);
+            transform: scale(1.1);
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .add-another {
+            background: #333;
+            color: #ff8c00;
+            border: 1px solid #ff8c00;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            font-size: 1em;
+        }
+        .add-another:hover {
+            background: #ff8c00;
+            color: white;
+        }
+        .additional-product {
+            margin-top: 20px;
+            padding: 15px;
+            background: #333;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(255, 136, 0, 0.3);
+        }
+        .additional-product h3 {
+            color: #ff8c00;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .additional-product .form-group {
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -133,8 +132,6 @@
         <h1>Order {{ product.name }}</h1>
         <img src="{{ product.image.url }}" alt="{{ product.name }}">
         <p><strong>Price per unit:</strong> ${{ product.price }}</p>
-        <p><strong>Size:</strong> {{ product.size }}</p>
-        <p><strong>Available Stock:</strong> {{ product.stock }}</p>
 
         <form method="POST" onsubmit="return validateQuantities()">
             {% csrf_token %}
@@ -157,26 +154,30 @@
 
             <!-- Initial Product Section -->
             <div class="form-group">
+                <label>Size:</label>
+                <select name="size" id="size" required onchange="updateStock()">
+                    {% for size in product.sizes.all %}
+                        <option value="{{ size.size }}" data-stock="{{ size.stock }}">{{ size.size }} (Stock: {{ size.stock }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
                 <label>Quantity:</label>
-                {% if product.stock > 0 %}
-                    <input type="number" name="quantity" id="quantity" min="1" max="{{ product.stock }}" value="1" required oninput="updateTotalPrice()">
-                {% else %}
-                    <p style="color: red;">This product is out of stock.</p>
-                {% endif %}
+                <input type="number" name="quantity" id="quantity" min="1" value="1" required oninput="updateTotalPrice()">
             </div>
 
             <!-- Additional Products Section -->
             <div id="additional-products"></div>
 
             <!-- Add Another Product Button -->
-            <button type="button" class="add-another" onclick="addProductSection()">Add Another Product</button>
+            <button type="button" class="add-another" onclick="addProductSection()">Add Another Size</button>
 
             <!-- Total Price -->
             <p class="price-info">Total Price: $<span id="total-price">{{ product.price }}</span></p>
 
             <!-- Buttons -->
             <div class="buttons">
-                <button type="submit" {% if product.stock <= 0 %}disabled{% endif %}>Place Order</button>
+                <button type="submit">Place Order</button>
             </div>
         </form>
     </div>
@@ -184,99 +185,105 @@
     <script>
         // Current product ID (passed from the view)
         const currentProductId = {{ product.id }};
-
+    
         // Function to update the total price
         function updateTotalPrice() {
             let totalPrice = 0;
-
+    
             // Calculate price for the initial product
             let initialQuantity = document.getElementById("quantity").value;
             let initialPrice = {{ product.price }};
             totalPrice += initialQuantity * initialPrice;
-
-            // Calculate price for additional products
+    
+            // Calculate price for additional sizes
             let additionalProducts = document.querySelectorAll(".additional-product");
             additionalProducts.forEach(product => {
                 let quantity = product.querySelector(".additional-quantity").value;
-                let price = parseFloat(product.querySelector(".additional-price").innerText);
+                let price = initialPrice; // Same price as the initial product
                 totalPrice += quantity * price;
             });
-
+    
             // Update the total price
             document.getElementById("total-price").innerText = totalPrice.toFixed(2);
         }
-
-        // Function to add a new product section
+    
+        // Function to update stock based on selected size
+        function updateStock() {
+            let sizeSelect = document.getElementById("size");
+            let selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
+            let stock = selectedOption.getAttribute("data-stock");
+            document.getElementById("quantity").max = stock;
+        }
+    
+        // Function to add a new size section
         function addProductSection() {
             let additionalProductsDiv = document.getElementById("additional-products");
-
-            // Create a new product section
+    
+            // Create a new size section
             let newProductSection = document.createElement("div");
             newProductSection.className = "additional-product";
             newProductSection.innerHTML = `
                 <div class="form-group">
-                    <label>Select Product:</label>
-                    <select name="additional_products" class="additional-product-select" onchange="updateAdditionalPrice(this)">
-                        {% for product in all_products %}
-                            {% if product.stock > 0 and product.id != current_product_id %}
-                                <option value="{{ product.id }}" data-price="{{ product.price }}">{{ product.name }} - ${{ product.price }} (Stock: {{ product.stock }})</option>
-                            {% endif %}
+                    <label>Size:</label>
+                    <select name="additional_sizes" class="additional-size-select" required onchange="updateAdditionalStock(this)">
+                        {% for size in product.sizes.all %}
+                            <option value="{{ size.size }}" data-stock="{{ size.stock }}">{{ size.size }} (Stock: {{ size.stock }})</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Quantity:</label>
-                    <input type="number" name="additional_quantities" class="additional-quantity" min="1" value="1" oninput="updateTotalPrice()">
+                    <input type="number" name="additional_quantities" class="additional-quantity" min="1" value="1" required oninput="updateTotalPrice()">
                 </div>
-                <p>Price: $<span class="additional-price">{{ all_products.0.price }}</span></p>
             `;
-
+    
             // Append the new section
             additionalProductsDiv.appendChild(newProductSection);
             updateTotalPrice();
         }
-
-        // Function to update the price of additional products
-        function updateAdditionalPrice(selectElement) {
-            let priceElement = selectElement.parentElement.parentElement.querySelector(".additional-price");
+    
+        // Function to update stock for additional sizes
+        function updateAdditionalStock(selectElement) {
             let selectedOption = selectElement.options[selectElement.selectedIndex];
-            let price = selectedOption.getAttribute("data-price");
-            priceElement.innerText = price;
-            updateTotalPrice();
+            let stock = selectedOption.getAttribute("data-stock");
+            let quantityInput = selectElement.closest(".additional-product").querySelector(".additional-quantity");
+            quantityInput.max = stock;
         }
-
+    
         // Function to validate quantities before form submission
         function validateQuantities() {
             let isValid = true;
-
+    
             // Validate initial product quantity
             let initialQuantity = document.getElementById("quantity").value;
-            let initialStock = {{ product.stock }};
-            if (initialQuantity > initialStock) {
-                alert(`Only ${initialStock} units of {{ product.name }} are available.`);
+            let sizeSelect = document.getElementById("size");
+            let selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
+            let stock = selectedOption.getAttribute("data-stock");
+    
+            if (initialQuantity > stock) {
+                alert(`Only ${stock} units of {{ product.name }} (Size: ${selectedOption.value}) are available.`);
                 isValid = false;
             }
-
-            // Validate additional product quantities
+    
+            // Validate additional size quantities
             let additionalProducts = document.querySelectorAll(".additional-product");
             additionalProducts.forEach(product => {
                 let quantity = product.querySelector(".additional-quantity").value;
-                let selectedOption = product.querySelector(".additional-product-select").options[product.querySelector(".additional-product-select").selectedIndex];
-                let stock = parseInt(selectedOption.textContent.match(/Stock: (\d+)/)[1]);
-
+                let sizeSelect = product.querySelector(".additional-size-select");
+                let selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
+                let stock = selectedOption.getAttribute("data-stock");
+    
                 if (quantity > stock) {
-                    alert(`Only ${stock} units of ${selectedOption.textContent.split(" - ")[0]} are available.`);
+                    alert(`Only ${stock} units of {{ product.name }} (Size: ${selectedOption.value}) are available.`);
                     isValid = false;
                 }
             });
-
+    
             return isValid;
         }
-
+    
         // Ensure price updates on page load
         window.onload = updateTotalPrice;
     </script>
 </body>
 </html>
-
-
