@@ -1,0 +1,103 @@
+        <!-- Hoodie Section -->
+        <section id="hoodies" class="category">
+            <h2>Hoodies</h2>
+            <div class="sort-options">
+                <label for="sort-hoodies">Sort by:</label>
+                <select id="sort-hoodies" onchange="sortProducts('hoodies', this.value)">
+                    <option value="low-to-high">Price: Low to High</option>
+                    <option value="high-to-low">Price: High to Low</option>
+                </select>
+            </div>
+            <div class="product-list">
+                {% for product in hoodies %}
+                    <div class="product-item">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        <h3>{{ product.name }}</h3>
+                        <p>Price: ${{ product.price }}</p>
+                        <a href="{% url 'product_detail' product.id %}" class="btn">View Details</a>
+                    </div>
+                {% empty %}
+                    <p>Hoodies aren't available right now.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Jersey Section -->
+        <section id="jerseys" class="category">
+            <h2>Jerseys</h2>
+            <div class="sort-options">
+                <label for="sort-jerseys">Sort by:</label>
+                <select id="sort-jerseys" onchange="sortProducts('jerseys', this.value)">
+                    <option value="low-to-high">Price: Low to High</option>
+                    <option value="high-to-low">Price: High to Low</option>
+                </select>
+            </div>
+            <div class="product-list">
+                {% for product in jerseys %}
+                    <div class="product-item">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        <h3>{{ product.name }}</h3>
+                        <p>Price: ${{ product.price }}</p>
+                        <a href="{% url 'product_detail' product.id %}" class="btn">View Details</a>
+                    </div>
+                {% empty %}
+                    <p>Jerseys aren't available right now.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Panjabi Section -->
+        <section id="panjabis" class="category">
+            <h2>Panjabis</h2>
+            <div class="sort-options">
+                <label for="sort-panjabis">Sort by:</label>
+                <select id="sort-panjabis" onchange="sortProducts('panjabis', this.value)">
+                    <option value="low-to-high">Price: Low to High</option>
+                    <option value="high-to-low">Price: High to Low</option>
+                </select>
+            </div>
+            <div class="product-list">
+                {% for product in panjabis %}
+                    <div class="product-item">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        <h3>{{ product.name }}</h3>
+                        <p>Price: ${{ product.price }}</p>
+                        <a href="{% url 'product_detail' product.id %}" class="btn">View Details</a>
+                    </div>
+                {% empty %}
+                    <p>Panjabis aren't available right now.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Pants Section -->
+        <section id="pants" class="category">
+            <h2>Pants</h2>
+            <div class="sort-options">
+                <label for="sort-pants">Sort by:</label>
+                <select id="sort-pants" onchange="sortProducts('pants', this.value)">
+                    <option value="low-to-high">Price: Low to High</option>
+                    <option value="high-to-low">Price: High to Low</option>
+                </select>
+            </div>
+            <div class="product-list">
+                {% for product in pants %}
+                    <div class="product-item">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        <h3>{{ product.name }}</h3>
+                        <p>Price: ${{ product.price }}</p>
+                        <a href="{% url 'product_detail' product.id %}" class="btn">View Details</a>
+                    </div>
+                {% empty %}
+                    <p>Pants aren't available right now.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <h2>Contact Us</h2>
+            <p>Follow us on Facebook: <a href="https://www.facebook.com/share/16GPbNVCs4/" target="_blank">PRINTASTIC007</a></p>
+            <p>Email us at: <a href="mailto:printastic007@gmail.com">printastic007@gmail.com</a></p>
+            <p>WhatsApp: <a href="https://wa.me/01902419513" target="_blank">+8801902419513</a></p>
+        </section>
