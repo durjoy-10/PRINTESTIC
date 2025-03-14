@@ -1,11 +1,9 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order {{ product.name }}</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -131,7 +129,7 @@
     <div class="container">
         <h1>Order {{ product.name }}</h1>
         <img src="{{ product.image.url }}" alt="{{ product.name }}">
-        <p><strong>Price per unit:</strong> ${{ product.price }}</p>
+        <p><strong>Price per unit:</strong> ৳{{ product.price }}</p>
 
         <form method="POST" onsubmit="return validateQuantities()">
             {% csrf_token %}
@@ -173,7 +171,7 @@
             <button type="button" class="add-another" onclick="addProductSection()">Add Another Size</button>
 
             <!-- Total Price -->
-            <p class="price-info">Total Price: $<span id="total-price">{{ product.price }}</span></p>
+            <p class="price-info">Total Price: ৳<span id="total-price">{{ product.price }}</span></p>
 
             <!-- Buttons -->
             <div class="buttons">
@@ -185,40 +183,41 @@
     <script>
         // Current product ID (passed from the view)
         const currentProductId = {{ product.id }};
-    
-        // Function to update the total price
+
+        // Function to update the total price dynamically
         function updateTotalPrice() {
             let totalPrice = 0;
-    
+
             // Calculate price for the initial product
-            let initialQuantity = document.getElementById("quantity").value;
+            let initialQuantity = parseInt(document.getElementById("quantity").value);
             let initialPrice = {{ product.price }};
             totalPrice += initialQuantity * initialPrice;
-    
+
             // Calculate price for additional sizes
             let additionalProducts = document.querySelectorAll(".additional-product");
             additionalProducts.forEach(product => {
-                let quantity = product.querySelector(".additional-quantity").value;
+                let quantity = parseInt(product.querySelector(".additional-quantity").value);
                 let price = initialPrice; // Same price as the initial product
                 totalPrice += quantity * price;
             });
-    
-            // Update the total price
+
+            // Update the total price display
             document.getElementById("total-price").innerText = totalPrice.toFixed(2);
         }
-    
+
         // Function to update stock based on selected size
         function updateStock() {
             let sizeSelect = document.getElementById("size");
             let selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
             let stock = selectedOption.getAttribute("data-stock");
             document.getElementById("quantity").max = stock;
+            updateTotalPrice(); // Update total price when size changes
         }
-    
+
         // Function to add a new size section
         function addProductSection() {
             let additionalProductsDiv = document.getElementById("additional-products");
-    
+
             // Create a new size section
             let newProductSection = document.createElement("div");
             newProductSection.className = "additional-product";
@@ -236,52 +235,23 @@
                     <input type="number" name="additional_quantities" class="additional-quantity" min="1" value="1" required oninput="updateTotalPrice()">
                 </div>
             `;
-    
+
             // Append the new section
             additionalProductsDiv.appendChild(newProductSection);
+
+            // Update the total price
             updateTotalPrice();
         }
-    
+
         // Function to update stock for additional sizes
         function updateAdditionalStock(selectElement) {
             let selectedOption = selectElement.options[selectElement.selectedIndex];
             let stock = selectedOption.getAttribute("data-stock");
             let quantityInput = selectElement.closest(".additional-product").querySelector(".additional-quantity");
             quantityInput.max = stock;
+            updateTotalPrice(); // Update total price when additional size changes
         }
-    
-        // Function to validate quantities before form submission
-        function validateQuantities() {
-            let isValid = true;
-    
-            // Validate initial product quantity
-            let initialQuantity = document.getElementById("quantity").value;
-            let sizeSelect = document.getElementById("size");
-            let selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
-            let stock = selectedOption.getAttribute("data-stock");
-    
-            if (initialQuantity > stock) {
-                alert(`Only ${stock} units of {{ product.name }} (Size: ${selectedOption.value}) are available.`);
-                isValid = false;
-            }
-    
-            // Validate additional size quantities
-            let additionalProducts = document.querySelectorAll(".additional-product");
-            additionalProducts.forEach(product => {
-                let quantity = product.querySelector(".additional-quantity").value;
-                let sizeSelect = product.querySelector(".additional-size-select");
-                let selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
-                let stock = selectedOption.getAttribute("data-stock");
-    
-                if (quantity > stock) {
-                    alert(`Only ${stock} units of {{ product.name }} (Size: ${selectedOption.value}) are available.`);
-                    isValid = false;
-                }
-            });
-    
-            return isValid;
-        }
-    
+
         // Ensure price updates on page load
         window.onload = updateTotalPrice;
     </script>

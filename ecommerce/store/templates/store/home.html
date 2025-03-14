@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -447,6 +446,7 @@
             <div class="sort-options">
                 <label for="sort-t-shirts">Sort by:</label>
                 <select id="sort-t-shirts" onchange="sortProducts('t-shirts', this.value)">
+                    <option value="default">Default</option>
                     <option value="low-to-high">Price: Low to High</option>
                     <option value="high-to-low">Price: High to Low</option>
                 </select>
@@ -456,7 +456,7 @@
                     <div class="product-item">
                         <img src="{{ product.image.url }}" alt="{{ product.name }}">
                         <h3>{{ product.name }}</h3>
-                        <p>Price: ${{ product.price }}</p>
+                        <p>Price: ৳{{ product.price }}</p>
                         <a href="{% url 'product_detail' product.id %}" class="btn">View Details</a>
                     </div>
                 {% empty %}
@@ -471,6 +471,7 @@
             <div class="sort-options">
                 <label for="sort-shirts">Sort by:</label>
                 <select id="sort-shirts" onchange="sortProducts('shirts', this.value)">
+                    <option value="default">Default</option>
                     <option value="low-to-high">Price: Low to High</option>
                     <option value="high-to-low">Price: High to Low</option>
                 </select>
@@ -480,7 +481,7 @@
                     <div class="product-item">
                         <img src="{{ product.image.url }}" alt="{{ product.name }}">
                         <h3>{{ product.name }}</h3>
-                        <p>Price: ${{ product.price }}</p>
+                        <p>Price: ৳{{ product.price }}</p>
                         <a href="{% url 'product_detail' product.id %}" class="btn">View Details</a>
                     </div>
                 {% empty %}
@@ -488,12 +489,16 @@
                 {% endfor %}
             </div>
         </section>
+
+
+
         <!-- Hoodie Section -->
         <section id="hoodies" class="category">
             <h2>Hoodies</h2>
             <div class="sort-options">
                 <label for="sort-hoodies">Sort by:</label>
                 <select id="sort-hoodies" onchange="sortProducts('hoodies', this.value)">
+                    <option value="default">Default</option>
                     <option value="low-to-high">Price: Low to High</option>
                     <option value="high-to-low">Price: High to Low</option>
                 </select>
@@ -503,7 +508,7 @@
                     <div class="product-item">
                         <img src="{{ product.image.url }}" alt="{{ product.name }}">
                         <h3>{{ product.name }}</h3>
-                        <p>Price: ${{ product.price }}</p>
+                        <p>Price: ৳{{ product.price }}</p>
                         <a href="{% url 'product_detail' product.id %}" class="btn">View Details</a>
                     </div>
                 {% empty %}
@@ -512,12 +517,14 @@
             </div>
         </section>
 
-        <!-- Jersey Section -->
+
+                <!-- Jersey Section -->
         <section id="jerseys" class="category">
             <h2>Jerseys</h2>
             <div class="sort-options">
                 <label for="sort-jerseys">Sort by:</label>
                 <select id="sort-jerseys" onchange="sortProducts('jerseys', this.value)">
+                    <option value="default">Default</option>
                     <option value="low-to-high">Price: Low to High</option>
                     <option value="high-to-low">Price: High to Low</option>
                 </select>
@@ -527,7 +534,7 @@
                     <div class="product-item">
                         <img src="{{ product.image.url }}" alt="{{ product.name }}">
                         <h3>{{ product.name }}</h3>
-                        <p>Price: ${{ product.price }}</p>
+                        <p>Price: ৳{{ product.price }}</p>
                         <a href="{% url 'product_detail' product.id %}" class="btn">View Details</a>
                     </div>
                 {% empty %}
@@ -536,12 +543,14 @@
             </div>
         </section>
 
+
         <!-- Panjabi Section -->
         <section id="panjabis" class="category">
             <h2>Panjabis</h2>
             <div class="sort-options">
                 <label for="sort-panjabis">Sort by:</label>
                 <select id="sort-panjabis" onchange="sortProducts('panjabis', this.value)">
+                    <option value="default">Default</option>
                     <option value="low-to-high">Price: Low to High</option>
                     <option value="high-to-low">Price: High to Low</option>
                 </select>
@@ -551,7 +560,7 @@
                     <div class="product-item">
                         <img src="{{ product.image.url }}" alt="{{ product.name }}">
                         <h3>{{ product.name }}</h3>
-                        <p>Price: ${{ product.price }}</p>
+                        <p>Price: ৳{{ product.price }}</p>
                         <a href="{% url 'product_detail' product.id %}" class="btn">View Details</a>
                     </div>
                 {% empty %}
@@ -560,12 +569,14 @@
             </div>
         </section>
 
+
         <!-- Pants Section -->
         <section id="pants" class="category">
             <h2>Pants</h2>
             <div class="sort-options">
                 <label for="sort-pants">Sort by:</label>
                 <select id="sort-pants" onchange="sortProducts('pants', this.value)">
+                    <option value="default">Default</option>
                     <option value="low-to-high">Price: Low to High</option>
                     <option value="high-to-low">Price: High to Low</option>
                 </select>
@@ -575,7 +586,7 @@
                     <div class="product-item">
                         <img src="{{ product.image.url }}" alt="{{ product.name }}">
                         <h3>{{ product.name }}</h3>
-                        <p>Price: ${{ product.price }}</p>
+                        <p>Price: ৳{{ product.price }}</p>
                         <a href="{% url 'product_detail' product.id %}" class="btn">View Details</a>
                     </div>
                 {% empty %}
@@ -584,6 +595,7 @@
             </div>
         </section>
 
+
         <!-- Contact Section -->
         <section id="contact" class="contact-section">
             <h2>Contact Us</h2>
@@ -591,6 +603,8 @@
             <p>Email us at: <a href="mailto:printastic007@gmail.com">printastic007@gmail.com</a></p>
             <p>WhatsApp: <a href="https://wa.me/01902419513" target="_blank">+8801902419513</a></p>
         </section>
+
+
     </div>
 
     <!-- Scroll-to-Top Button -->
@@ -628,11 +642,11 @@
         function filterProducts(query) {
             const sections = document.querySelectorAll('.category'); // Get all sections
             let foundMatch = false; // Flag to check if any product matches the query
-        
+
             sections.forEach(section => {
                 const products = section.querySelectorAll('.product-item'); // Get all products in the section
                 let sectionHasMatch = false; // Flag to check if the current section has a match
-        
+
                 products.forEach(product => {
                     const productName = product.querySelector('h3').textContent.toLowerCase();
                     if (productName.includes(query.toLowerCase())) {
@@ -643,7 +657,7 @@
                         product.style.display = 'none'; // Hide the product
                     }
                 });
-        
+
                 // Show or hide the section based on whether it has a matching product
                 if (sectionHasMatch) {
                     section.style.display = 'block'; // Show the section
@@ -651,7 +665,7 @@
                     section.style.display = 'none'; // Hide the section
                 }
             });
-        
+
             // If no products match the query, show a message
             if (!foundMatch) {
                 const noResultsMessage = document.createElement('p');
@@ -660,13 +674,13 @@
                 noResultsMessage.style.color = '#ff5722';
                 noResultsMessage.style.fontSize = '1.5em';
                 noResultsMessage.style.marginTop = '20px';
-        
+
                 // Remove any existing no-results message
                 const existingMessage = document.querySelector('.no-results-message');
                 if (existingMessage) {
                     existingMessage.remove();
                 }
-        
+
                 // Append the new no-results message
                 document.querySelector('.container').appendChild(noResultsMessage);
                 noResultsMessage.classList.add('no-results-message');
@@ -678,32 +692,61 @@
                 }
             }
         }
-        // Sort products by price
+
+        // Store the original order of products for each section
+        const originalProductOrders = {};
+
+        // Function to store the original order of products
+        function storeOriginalOrder(sectionId) {
+            const section = document.getElementById(sectionId);
+            const productList = section.querySelector('.product-list');
+            const products = Array.from(productList.querySelectorAll('.product-item'));
+            originalProductOrders[sectionId] = products;
+        }
+
+        // Sort products by price or restore default order
         function sortProducts(sectionId, sortOrder) {
             const section = document.getElementById(sectionId);
             const productList = section.querySelector('.product-list');
             const products = Array.from(productList.querySelectorAll('.product-item'));
 
-            products.sort((a, b) => {
-                const priceA = parseFloat(a.querySelector('p').textContent.replace('Price: $', ''));
-                const priceB = parseFloat(b.querySelector('p').textContent.replace('Price: $', ''));
+            if (sortOrder === 'default') {
+                // Restore the original order
+                productList.innerHTML = '';
+                originalProductOrders[sectionId].forEach(product => {
+                    productList.appendChild(product);
+                });
+            } else {
+                // Sort by price
+                products.sort((a, b) => {
+                    const priceA = parseFloat(a.querySelector('p').textContent.replace('Price: ৳', '').replace(/,/g, ''));
+                    const priceB = parseFloat(b.querySelector('p').textContent.replace('Price: ৳', '').replace(/,/g, ''));
 
-                if (sortOrder === 'low-to-high') {
-                    return priceA - priceB;
-                } else if (sortOrder === 'high-to-low') {
-                    return priceB - priceA;
-                }
-                return 0;
-            });
+                    if (sortOrder === 'low-to-high') {
+                        return priceA - priceB; // Sort from low to high
+                    } else if (sortOrder === 'high-to-low') {
+                        return priceB - priceA; // Sort from high to low
+                    }
+                    return 0;
+                });
 
-            // Clear the current product list
-            productList.innerHTML = '';
+                // Clear the current product list
+                productList.innerHTML = '';
 
-            // Append sorted products back to the list
-            products.forEach(product => {
-                productList.appendChild(product);
-            });
+                // Append sorted products back to the list
+                products.forEach(product => {
+                    productList.appendChild(product);
+                });
+            }
         }
+
+        // Store the original order of products when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = ['t-shirts', 'shirts', 'hoodies', 'jerseys', 'panjabis', 'pants'];
+            sections.forEach(sectionId => {
+                storeOriginalOrder(sectionId);
+            });
+        });
     </script>
 </body>
 </html>
